@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TD Gaming</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 20px 60px;
+        }
+
+        /* Rectangular Top Banner */
+        .top-banner {
+            width: 100%;
+            max-width: 900px;
+            background-color: #1d4ed8;
+            color: #ffffff;
+            padding: 20px 28px;
+            border-radius: 6px;
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.18);
+        }
+
+        .top-banner h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+        }
+
+        /* Responsive Grid for Game Squares */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Minimalist Clickable Square */
+        .game-square {
+            aspect-ratio: 1 / 1; /* Keeps the cards perfectly square */
+            background-color: #ffffff;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #111111;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 16px;
+            transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .game-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .game-tag {
+            font-size: 0.75rem;
+            color: #777777;
+            font-weight: 400;
+        }
+
+        /* Subtle Hover & Active Effects */
+        .game-square:hover {
+            border-color: #111111;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .game-square:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Modal Overlay for Game Launch / Placeholder */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border: 2px solid #111111;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 400px;
+            padding: 28px 24px;
+            text-align: center;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .modal-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            color: #555555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .modal-close {
+            background: #111111;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.15s ease;
+        }
+
+        .modal-close:hover {
+            opacity: 0.85;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 16px 40px;
+            }
+            .top-banner {
+                padding: 16px 20px;
+                margin-bottom: 24px;
+            }
+            .top-banner h1 {
+                font-size: 1.5rem;
+            }
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-banner">
+        <h1>TD Gaming</h1>
+    </header>
+
+    <main class="game-grid" id="gameGrid">
+        <button type="button" class="game-square" data-title="Tic-Tac-Toe" data-icon="⭕" data-desc="Classic 3x3 strategy game for two players or against the computer.">
+            <span class="game-icon">⭕</span>
+            <span>Tic-Tac-Toe</span>
+            <span class="game-tag">Strategy</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="Snake" data-icon="🐍" data-desc="Guide the snake, collect food, and grow as long as possible without hitting the walls.">
+            <span class="game-icon">🐍</span>
+            <span>Snake</span>
+            <span class="game-tag">Arcade</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="Memory Match" data-icon="🃏" data-desc="Flip cards and match pairs in the fewest moves possible.">
+            <span class="game-icon">🃏</span>
+            <span>Memory Match</span>
+            <span class="game-tag">Puzzle</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="2048" data-icon="🔢" data-desc="Slide numbered tiles on a grid to combine them and reach the 2048 tile.">
+            <span class="game-icon">🔢</span>
+            <span>2048</span>
+            <span class="game-tag">Numbers</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="Minesweeper" data-icon="💣" data-desc="Clear the board without detonating any hidden mines using numerical clues.">
+            <span class="game-icon">💣</span>
+            <span>Minesweeper</span>
+            <span class="game-tag">Logic</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="Chess" data-icon="♟️" data-desc="Outmaneuver your opponent's pieces and checkmate the king.">
+            <span class="game-icon">♟️</span>
+            <span>Chess</span>
+            <span class="game-tag">Board</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="Sudoku" data-icon="🧩" data-desc="Fill every row, column, and 3x3 box with the digits 1 through 9.">
+            <span class="game-icon">🧩</span>
+            <span>Sudoku</span>
+            <span class="game-tag">Logic</span>
+        </button>
+
+        <button type="button" class="game-square" data-title="Breakout" data-icon="🧱" data-desc="Bounce the ball off your paddle to shatter all the bricks above.">
+            <span class="game-icon">🧱</span>
+            <span>Breakout</span>
+            <span class="game-tag">Arcade</span>
+        </button>
+    </main>
+
+    <!-- Interactive Launch Modal -->
+    <div class="modal-backdrop" id="gameModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <div class="modal-icon" id="modalIcon">🎮</div>
+            <h2 class="modal-title" id="modalTitle">Game Title</h2>
+            <p class="modal-desc" id="modalDesc">Game description goes here.</p>
+            <button type="button" class="modal-close" id="closeModalBtn">Back to Hub</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameButtons = document.querySelectorAll('.game-square');
+            const modal = document.getElementById('gameModal');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            // Open modal with selected game details
+            gameButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    modalIcon.textContent = btn.dataset.icon || '🎮';
+                    modalTitle.textContent = btn.dataset.title || 'Game';
+                    modalDesc.textContent = btn.dataset.desc || 'Ready to launch.';
+                    modal.classList.add('open');
+                });
+            });
+
+            // Close modal handlers
+            const closeModal = () => modal.classList.remove('open');
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
