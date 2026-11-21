@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #ffffff;
+            background-color: #e5e7eb;
             color: #111111;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
@@ -58,7 +58,7 @@
         .game-square {
             aspect-ratio: 1 / 1; /* Keeps the cards perfectly square */
             background-color: #ffffff;
-            border: 2px solid #e5e5e5;
+            border: 2px solid #d1d5db;
             border-radius: 12px;
             display: flex;
             flex-direction: column;
@@ -79,6 +79,9 @@
         .game-icon {
             font-size: 2.25rem;
             line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .game-tag {
@@ -91,12 +94,12 @@
         .game-square:hover {
             border-color: #111111;
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
         .game-square:active {
             transform: translateY(0);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
 
         @media (max-width: 480px) {
@@ -126,13 +129,37 @@
     <main class="game-grid" id="gameGrid">
         <a href="https://djaschmitz07-maker.github.io/Rocket-Asteroid-Dodger/" target="_blank" rel="noopener noreferrer" class="game-square">
             <span class="game-icon">🚀</span>
-            <span>Rocket Asteroid Dodger</span>
-            <span class="game-tag">Arcade</span>
+            <span>Rocket Asteroid Dodger (Original)</span>
+            <span class="game-tag">Original</span>
         </a>
 
         <a href="https://djaschmitz07-maker.github.io/Rocket-Asteroid-Dodger2.0/" target="_blank" rel="noopener noreferrer" class="game-square">
             <span class="game-icon">🚀</span>
             <span>Rocket Asteroid Dodger 2.0</span>
+            <span class="game-tag">Arcade</span>
+        </a>
+
+        <a href="https://djaschmitz07-maker.github.io/Rocket-Galaga/" target="_blank" rel="noopener noreferrer" class="game-square">
+            <span class="game-icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Twin Wing Laser Tips -->
+                    <rect x="8" y="28" width="4" height="10" rx="2" fill="#ef4444"/>
+                    <rect x="52" y="28" width="4" height="10" rx="2" fill="#ef4444"/>
+                    <!-- Swept Wings -->
+                    <path d="M24 28L8 44V50L24 44V28Z" fill="#2563eb"/>
+                    <path d="M40 28L56 44V50L40 44V28Z" fill="#2563eb"/>
+                    <!-- Main Starfighter Hull -->
+                    <path d="M32 6C26 14 23 26 23 44H41C41 26 38 14 32 6Z" fill="#f8fafc" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
+                    <!-- Nose Cone Accent -->
+                    <path d="M32 6C29.5 9.5 27.8 14 26.8 18H37.2C36.2 14 34.5 9.5 32 6Z" fill="#ef4444"/>
+                    <!-- Cockpit Canopy -->
+                    <ellipse cx="32" cy="27" rx="3.5" ry="6.5" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+                    <!-- Twin Thruster Flames -->
+                    <path d="M26 44L28 56L30 44H26Z" fill="#f97316"/>
+                    <path d="M34 44L36 56L38 44H34Z" fill="#f97316"/>
+                </svg>
+            </span>
+            <span>Galactic Rocket Defender</span>
             <span class="game-tag">Arcade</span>
         </a>
     </main>
